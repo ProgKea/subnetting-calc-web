@@ -39,8 +39,8 @@ function ipToBinary(ip_octets) {
 function processInput(ip, snm) {
     const snm_binary = ipToBinary(snm);
     const prefix = count(snm_binary.join(""), "1");
-    const subnet_count = 2**count(snm_binary[snm_binary.length-1], "1"); // Is there a cooler way to get the last element of an array?
-    const host_count = 2**(32 - prefix);
+    const subnet_count = 2 ** count(snm_binary[snm_binary.length - 1], "1");
+    const host_count = 2 ** (32 - prefix);
     const usable_host_count = host_count - 2;
 
     document.getElementById("ip_address").textContent = ip.join(".");
@@ -51,9 +51,4 @@ function processInput(ip, snm) {
     document.getElementById("subnet_count").textContent = subnet_count;
     document.getElementById("host_count").textContent = host_count;
     document.getElementById("usable_host_count").textContent = usable_host_count;
-}
-
-function clearInput() {
-    document.getElementById("ip").value = "";
-    document.getElementById("snm").value = "";
 }
